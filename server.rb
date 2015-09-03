@@ -7,6 +7,10 @@ class KeyValueStore < Sinatra::Application
     set :pairs, {}
   end
 
+  before do
+    headers 'Access-Control-Allow-Origin' => '*'
+  end
+
   get '/forms/:formid' do
     content_type :json
     return JSON.pretty_generate({

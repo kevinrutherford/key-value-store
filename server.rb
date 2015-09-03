@@ -31,6 +31,7 @@ class KeyValueStore < Sinatra::Application
   get '/forms/:formid' do
     content_type :json
     JSON.pretty_generate({
+      id:     params[:formid],
       fields: settings.pairs
     })
   end

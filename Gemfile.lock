@@ -16,6 +16,7 @@ GEM
       eventmachine (~> 1.0)
       rack (~> 1.0)
     tilt (2.0.1)
+    uuidtools (2.1.5)
 
 PLATFORMS
   ruby
@@ -24,3 +25,4 @@ DEPENDENCIES
   rake
   sinatra
   thin
+  uuidtools

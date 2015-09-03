@@ -1,5 +1,6 @@
 require 'sinatra/base'
 require 'json'
+require 'uuidtools'
 
 class KeyValueStore < Sinatra::Application
 
@@ -9,6 +10,16 @@ class KeyValueStore < Sinatra::Application
 
   before do
     headers 'Access-Control-Allow-Origin' => '*'
+  end
+
+  get '/user' do
+    content_type :json
+    return JSON.pretty_generate({
+      id:             UUIDTools::UUID.random_create.to_s,
+      organisationId: UUIDTools::UUID.random_create.to_s,
+      friendlyName:   'linux!',
+      permissions:    ['Create_SDLT']
+    })
   end
 
   get '/forms/:formid' do

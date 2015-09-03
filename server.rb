@@ -43,4 +43,11 @@ class KeyValueStore < Sinatra::Application
     200
   end
 
+  delete '/forms/:formid/fieldvalue' do
+    request.body.rewind
+    payload = JSON.parse(request.body.read, symbolize_names: true)
+    settings.pairs.delete(payload[:fieldName])
+    200
+  end
+
 end

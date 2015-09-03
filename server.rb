@@ -12,9 +12,13 @@ class KeyValueStore < Sinatra::Application
     headers 'Access-Control-Allow-Origin' => '*'
   end
 
+  options /.*/ do
+    200
+  end
+
   get '/user' do
     content_type :json
-    return JSON.pretty_generate({
+    JSON.pretty_generate({
       id:             UUIDTools::UUID.random_create.to_s,
       organisationId: UUIDTools::UUID.random_create.to_s,
       friendlyName:   'linux!',
@@ -24,7 +28,7 @@ class KeyValueStore < Sinatra::Application
 
   get '/forms/:formid' do
     content_type :json
-    return JSON.pretty_generate({
+    JSON.pretty_generate({
       fields: settings.pairs
     })
   end
@@ -33,7 +37,7 @@ class KeyValueStore < Sinatra::Application
     request.body.rewind
     payload = JSON.parse(request.body.read, symbolize_names: true)
     settings.pairs[payload[:fieldName]] = payload[:fieldValue]
-    return 200
+    200
   end
 
 end

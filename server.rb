@@ -10,6 +10,8 @@ class KeyValueStore < Sinatra::Application
 
   before do
     headers 'Access-Control-Allow-Origin' => '*'
+    headers 'Access-Control-Allow-Credentials' => 'true'
+    headers 'Access-Control-Allow-Headers' => 'origin, content-type, accept'
   end
 
   options /.*/ do

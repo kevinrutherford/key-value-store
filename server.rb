@@ -19,6 +19,10 @@ class KeyValueStore < Sinatra::Application
     200
   end
 
+  post '/users/authenticate' do
+    'token'
+  end
+
   get '/user' do
     content_type :json
     JSON.pretty_generate({
@@ -49,6 +53,34 @@ class KeyValueStore < Sinatra::Application
     payload = JSON.parse(request.body.read, symbolize_names: true)
     settings.pairs.delete(payload[:fieldName])
     200
+  end
+
+  get '/users' do
+    content_type :json
+    JSON.pretty_generate({
+      resourceList: []
+    })
+  end
+
+  get '/organisations' do
+    content_type :json
+    JSON.pretty_generate({
+      resourceList: []
+    })
+  end
+
+  get '/readmodels/allforms' do
+    content_type :json
+    JSON.pretty_generate({
+      forms: []
+    })
+  end
+
+  get '/readmodels/dodgyformevents' do
+    content_type :json
+    JSON.pretty_generate({
+      dodgyFormEvents: []
+    })
   end
 
 end

@@ -72,7 +72,11 @@ class KeyValueStore < Sinatra::Application
   get '/readmodels/allforms' do
     content_type :json
     JSON.pretty_generate({
-      forms: []
+      forms: [
+        {streamName: 'stream-1', users: []},
+        {streamName: 'stream-2', users: ['b']},
+        {streamName: 'stream-2', users: ['a'], status: 'Failed'}
+      ]
     })
   end
 
